@@ -40,7 +40,7 @@ Este projeto foi desenvolvido para simplificar a criação e gestão de uma loja
      - Copie as configurações geradas para o app.
 
 3. **Configuração do Projeto Vue.js**
-   - Substitua o conteúdo do arquivo `firebaseConfig.js` pelo seguinte:
+   - Substitua o conteúdo do arquivo `assets/js/firebase-config.js` pelo seguinte:
      ```javascript
      const firebaseConfig = {
        apiKey: "SUA_API_KEY",
