@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestor de painel</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../assets/css/panel.css">
+  </head>
+  <body>
+    <div class="container mt-4">
+      <h1>Carrousel</h1>
+      <p>Configure aqui os items do slider principal do site.</p>
+      <h2>Gerenciar Carrossel</h2>
+      <form id="carouselForm">
+        <div class="mb-3">
+          <label for="carouselImage" class="form-label">URL da Imagem 1</label>
+          <input
+            type="text"
+            id="carouselImage"
+            class="form-control"
+            placeholder="Insira a URL da imagem"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="carouselImage" class="form-label">URL da Imagem 2</label>
+          <input
+            type="text"
+            id="carouselImage2"
+            class="form-control"
+            placeholder="Insira a URL da imagem"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="carouselImage" class="form-label">URL da Imagem 3</label>
+          <input
+            type="text"
+            id="carouselImage3"
+            class="form-control"
+            placeholder="Insira a URL da imagem"
+          />
+        </div>
+        <button type="button" class="btn btn-primary" id="btn-submit-carrousel">
+          Adicionar ao Carrossel
+        </button>
+      </form>
+
+      <h2 class="mt-5">Gerenciar Produtos</h2>
+      <form id="productForm">
+        <div class="mb-3">
+          <label for="productName" class="form-label">Nome do Produto</label>
+          <input
+            type="text"
+            id="productName"
+            class="form-control"
+            placeholder="Nome do produto"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="productImage" class="form-label">URL da Imagem</label>
+          <input
+            type="text"
+            id="productImage"
+            class="form-control"
+            placeholder="URL da imagem"
+          />
+        </div>
+        <button type="submit" class="btn btn-success" >Adicionar Produto</button>
+      </form>
+    </div>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script type="module">
+      import { appFire } from '../assets/js/firebase-config.js';
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+        onSnapshot,
+      } from 'https://www.gstatic.com/firebasejs//11.0.2/firebase-firestore.js';
+
+      const db = getFirestore(appFire);
+
+      // Função para adicionar ao carrossel
+      const carouselForm = document.getElementById('btn-submit-carrousel');
+      carouselForm.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const imageUrl = document.getElementById('carouselImage').value;
+        const imageUrl2 = document.getElementById('carouselImage2').value;
+        const imageUrl3 = document.getElementById('carouselImage3').value;
+
+        await addDoc(collection(db, 'carousel'), { image: imageUrl });
+        await addDoc(collection(db, 'carousel'), { image: imageUrl2 });
+        await addDoc(collection(db, 'carousel'), { image: imageUrl3 });
+
+        alert('Imagem adicionada ao carrossel!');
+      });
+
+      // Função para adicionar produtos
+      const productForm = document.getElementById('productForm');
+      productForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('productName').value;
+        const image = document.getElementById('productImage').value;
+        await addDoc(collection(db, 'products'), { name, image });
+        alert('Produto adicionado!');
+      });
+    </script>
+  </body>
+</html>

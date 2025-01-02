@@ -1,0 +1,3 @@
+.colorized-img {
+    filter: brightness(0) saturate(100%) invert(72%) sepia(70%) saturate(477%) hue-rotate(-30deg) brightness(78%) contrast(150%);
+}
