@@ -42,21 +42,24 @@ Este projeto foi desenvolvido para simplificar a criação e gestão de uma loja
 3. **Configuração do Projeto Vue.js**
    - Substitua o conteúdo do arquivo `assets/js/firebase-config.js` pelo seguinte:
      ```javascript
-     const firebaseConfig = {
-       apiKey: "SUA_API_KEY",
-       authDomain: "SEU_AUTH_DOMAIN",
-       projectId: "SEU_PROJECT_ID",
-       storageBucket: "SEU_STORAGE_BUCKET",
-       messagingSenderId: "SEU_MESSAGING_SENDER_ID",
-       appId: "SEU_APP_ID"
-     };
-
-     // Inicialização do Firebase
-     firebase.initializeApp(firebaseConfig);
-     const auth = firebase.auth();
-     const db = firebase.firestore();
-
-     export { auth, db };
+     
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js';
+      
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+      
+      // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "SUA_API_KEY",
+          authDomain: "SEU_AUTH_DOMAIN",
+          projectId: "SEU_PROJECT_ID",
+          storageBucket: "SEU_STORAGE_BUCKET",
+          messagingSenderId: "SEU_MESSAGING_SENDER_ID",
+          appId: "SEU_APP_ID"
+        };
+      // Initialize Firebase
+      export const appFire = initializeApp(firebaseConfig);
      ```
 
 ---
